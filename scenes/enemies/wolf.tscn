@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://wolf001"]
+[gd_scene load_steps=7 format=3 uid="uid://wolf001"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_base.gd" id="1"]
 
@@ -14,9 +14,9 @@ radius = 0.06
 height = 0.12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eye"]
-albedo_color = Color(1, 0.2, 0.2)
+albedo_color = Color(1, 0.2, 0.2, 1)
 emission_enabled = true
-emission = Color(1, 0.1, 0.1)
+emission = Color(1, 0.1, 0.1, 1)
 emission_energy_multiplier = 1.5
 
 [sub_resource type="NavigationAgent3D" id="nav_agent_wolf"]
@@ -33,7 +33,7 @@ chase_range = 25.0
 aggro_range = 15.0
 attack_cooldown = 1.0
 drop_items = {"raw_meat": {"min": 1, "max": 3}, "animal_hide": {"min": 1, "max": 2}}
-body_color = Color(0.35, 0.3, 0.25)
+body_color = Color(0.35, 0.3, 0.25, 1)
 is_passive = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

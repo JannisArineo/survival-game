@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ore001"]
+[gd_scene load_steps=7 format=3 uid="uid://ore001"]
 
 [ext_resource type="Script" path="res://scenes/resources/resource_base.gd" id="1"]
 
@@ -9,7 +9,7 @@ size = Vector3(1.2, 0.9, 1.0)
 size = Vector3(1.2, 0.9, 1.0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ore"]
-albedo_color = Color(0.3, 0.3, 0.32)
+albedo_color = Color(0.3, 0.3, 0.32, 1)
 roughness = 0.85
 metallic = 0.3
 
@@ -18,11 +18,11 @@ radius = 0.12
 height = 0.24
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crystal"]
-albedo_color = Color(0.7, 0.5, 0.2)
+albedo_color = Color(0.7, 0.5, 0.2, 1)
 metallic = 0.8
 roughness = 0.2
 emission_enabled = true
-emission = Color(0.5, 0.35, 0.1)
+emission = Color(0.5, 0.35, 0.1, 1)
 emission_energy_multiplier = 0.5
 
 [node name="Ore" type="StaticBody3D"]

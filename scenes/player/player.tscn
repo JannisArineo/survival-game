@@ -10,7 +10,7 @@ height = 1.8
 size = Vector3(0.15, 0.15, 0.4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hand"]
-albedo_color = Color(0.8, 0.65, 0.5)
+albedo_color = Color(0.8, 0.65, 0.5, 1)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2

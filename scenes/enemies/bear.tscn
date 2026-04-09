@@ -14,9 +14,9 @@ radius = 0.08
 height = 0.16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eye"]
-albedo_color = Color(1, 0.8, 0.1)
+albedo_color = Color(1, 0.8, 0.1, 1)
 emission_enabled = true
-emission = Color(1, 0.6, 0.0)
+emission = Color(1, 0.6, 0.0, 1)
 emission_energy_multiplier = 1.0
 
 [node name="Bear" type="CharacterBody3D"]
@@ -31,7 +31,7 @@ chase_range = 15.0
 aggro_range = 8.0
 attack_cooldown = 2.0
 drop_items = {"raw_meat": {"min": 3, "max": 6}, "animal_hide": {"min": 2, "max": 4}}
-body_color = Color(0.3, 0.2, 0.12)
+body_color = Color(0.3, 0.2, 0.12, 1)
 is_passive = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
