@@ -34,6 +34,8 @@ var weather_label: Label
 # Bow charge bar
 var bow_bar: ProgressBar
 
+var minimap: Control
+
 func _ready():
 	_setup_hotbar()
 	_setup_hit_marker()
@@ -41,12 +43,21 @@ func _ready():
 	_setup_armor_panel()
 	_setup_weather_label()
 	_setup_bow_bar()
+	_setup_minimap()
 
 	Inventory.hotbar_changed.connect(_update_hotbar)
 	Inventory.selected_slot_changed.connect(_update_selection)
 	GameManager.show_notification.connect(_queue_notification)
 	if is_instance_valid(ArmorManager):
 		ArmorManager.armor_changed.connect(_update_armor_display)
+
+func _setup_minimap():
+	var minimap_script = preload("res://scenes/ui/minimap.gd")
+	minimap = Control.new()
+	minimap.set_script(minimap_script)
+	minimap.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	minimap.position = Vector2(-145, 140)
+	add_child(minimap)
 
 func _process(delta):
 	if GameManager.player == null:

@@ -121,6 +121,8 @@ func _spawn_resources():
 	var berry_script = preload("res://scenes/resources/berry_bush.gd")
 	var mushroom_script = preload("res://scenes/resources/mushroom.gd")
 	var loot_script = preload("res://scenes/world/loot_crate.gd")
+	var fish_script = preload("res://scenes/resources/fish_node.gd")
+	var hemp_script = preload("res://scenes/resources/hemp_plant.gd")
 
 	for i in 16:
 		var rx = rng.randf_range(1, CHUNK_SIZE - 1)
@@ -145,14 +147,24 @@ func _spawn_resources():
 			# Beeren-Busch
 			instance = StaticBody3D.new()
 			instance.set_script(berry_script)
-		elif roll < 0.93:
+		elif roll < 0.87:
 			# Pilz
 			instance = StaticBody3D.new()
 			instance.set_script(mushroom_script)
-		else:
+		elif roll < 0.92:
+			# Hanf-Pflanze
+			instance = StaticBody3D.new()
+			instance.set_script(hemp_script)
+		elif roll < 0.97:
 			# Loot Crate (selten)
 			instance = StaticBody3D.new()
 			instance.set_script(loot_script)
+		else:
+			# Fish Node (nur nahe Wasser)
+			if height > 1.5:
+				continue
+			instance = StaticBody3D.new()
+			instance.set_script(fish_script)
 
 		instance.position = Vector3(rx * QUAD_SIZE, height, rz * QUAD_SIZE)
 		resource_spawner.add_child(instance)

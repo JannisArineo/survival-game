@@ -204,7 +204,27 @@ func _die():
 	is_dead = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	AudioManager.play_death()
+	_drop_inventory_on_death()
 	GameManager.player_died.emit()
+
+func _drop_inventory_on_death():
+	# Spawnt einen Loot-Sack mit allem was der Spieler hatte
+	var drop_script = preload("res://scenes/world/death_loot.gd")
+	var drop = StaticBody3D.new()
+	drop.set_script(drop_script)
+
+	# Alle Items in den Drop uebertragen
+	var items = []
+	for i in Inventory.MAX_SLOTS:
+		if Inventory.slots[i] != null:
+			items.append(Inventory.slots[i].duplicate())
+			Inventory.slots[i] = null
+	Inventory.inventory_changed.emit()
+	Inventory.hotbar_changed.emit()
+
+	drop.loot_items = items
+	get_tree().current_scene.add_child(drop)
+	drop.global_position = global_position + Vector3(0, 0.5, 0)
 
 func _check_interaction():
 	if interact_ray and interact_ray.is_colliding():
@@ -234,6 +254,20 @@ func _try_interact():
 	if current_interactable and current_interactable.can_interact(self):
 		current_interactable.interact(self)
 		return
+
+	# Wasser trinken wenn nahe an Wasser (y < -0.2)
+	if global_position.y < 0.5:
+		var space = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(
+			global_position, global_position + Vector3.DOWN * 2.0
+		)
+		query.collision_mask = 1
+		var result = space.intersect_ray(query)
+		if result and result.position.y < 0.0:
+			thirst = minf(100.0, thirst + 25.0)
+			AudioManager.play_pickup()
+			GameManager.show_notification.emit("+25 Durst gestillt", Color(0.4, 0.7, 1.0))
+			return
 
 	# Essen/Trinken aus Hotbar
 	var item_data = Inventory.get_selected_item_data()

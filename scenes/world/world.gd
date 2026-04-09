@@ -11,7 +11,6 @@ var last_player_chunk: Vector2i = Vector2i(-999, -999)
 @onready var sun: DirectionalLight3D = $Sun
 @onready var environment: WorldEnvironment = $WorldEnvironment
 @onready var enemy_spawner = $EnemySpawner
-@onready var water_plane = $WaterPlane
 
 var spawn_timer: float = 0.0
 const SPAWN_INTERVAL = 30.0
@@ -145,7 +144,6 @@ func _spawn_enemy():
 	var dist = randf_range(40.0, 70.0)
 	var spawn_pos = player_pos + Vector3(cos(angle) * dist, 50, sin(angle) * dist)
 
-	# Raycast nach unten um Bodenhöhe zu finden
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(spawn_pos, spawn_pos + Vector3.DOWN * 100)
 	query.collision_mask = 1
@@ -155,9 +153,19 @@ func _spawn_enemy():
 
 	spawn_pos.y = result.position.y + 1.0
 
-	# Wolf oder Baer
-	var scene_path = "res://scenes/enemies/wolf.tscn" if randf() < 0.7 else "res://scenes/enemies/bear.tscn"
+	# Wolf (35%), Baer (15%), Wildschwein (30%), Huhn (20%)
+	var roll = randf()
+	var scene_path: String
+	if roll < 0.35:
+		scene_path = "res://scenes/enemies/wolf.tscn"
+	elif roll < 0.50:
+		scene_path = "res://scenes/enemies/bear.tscn"
+	elif roll < 0.80:
+		scene_path = "res://scenes/enemies/boar.tscn"
+	else:
+		scene_path = "res://scenes/enemies/chicken.tscn"
+
 	if ResourceLoader.exists(scene_path):
 		var enemy = load(scene_path).instantiate()
-		enemy.global_position = spawn_pos
 		add_child(enemy)
+		enemy.global_position = spawn_pos
