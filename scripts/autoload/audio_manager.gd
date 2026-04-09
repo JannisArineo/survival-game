@@ -127,7 +127,7 @@ func _play_2d_sound(stream: AudioStream, vol: float, dur: float):
 # Procedural Audio Generators
 func _create_footstep_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 2205  # 0.1 sek
 	var data = PackedByteArray()
@@ -144,7 +144,7 @@ func _create_footstep_stream() -> AudioStreamWAV:
 
 func _create_hit_stream(material: String) -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 4410
 	var data = PackedByteArray()
@@ -160,7 +160,7 @@ func _create_hit_stream(material: String) -> AudioStreamWAV:
 
 func _create_swing_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 2200
 	var data = PackedByteArray()
@@ -175,7 +175,7 @@ func _create_swing_stream() -> AudioStreamWAV:
 
 func _create_craft_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 6615
 	var data = PackedByteArray()
@@ -190,7 +190,7 @@ func _create_craft_stream() -> AudioStreamWAV:
 
 func _create_pickup_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 3307
 	var data = PackedByteArray()
@@ -205,7 +205,7 @@ func _create_pickup_stream() -> AudioStreamWAV:
 
 func _create_build_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 8820
 	var data = PackedByteArray()
@@ -220,7 +220,7 @@ func _create_build_stream() -> AudioStreamWAV:
 
 func _create_death_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 22050
 	var data = PackedByteArray()
@@ -235,7 +235,7 @@ func _create_death_stream() -> AudioStreamWAV:
 
 func _create_bow_draw_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 11025
 	var data = PackedByteArray()
@@ -250,7 +250,7 @@ func _create_bow_draw_stream() -> AudioStreamWAV:
 
 func _create_bow_release_stream() -> AudioStreamWAV:
 	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_8_BIT
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
 	stream.mix_rate = 22050
 	var samples = 4410
 	var data = PackedByteArray()

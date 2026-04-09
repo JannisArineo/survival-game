@@ -314,7 +314,7 @@ func _on_weather_changed(weather_name: String):
 
 func _setup_bow_bar():
 	bow_bar = ProgressBar.new()
-	bow_bar.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_CENTER)
+	bow_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	bow_bar.position.y = -120
 	bow_bar.position.x = -75
 	bow_bar.size = Vector2(150, 12)

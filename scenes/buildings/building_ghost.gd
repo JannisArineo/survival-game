@@ -91,6 +91,28 @@ func _create_fallback_ghost(building_id: String) -> Node3D:
 			var box = BoxMesh.new()
 			box.size = Vector3(4, 1.5, 2)
 			mesh = box
+		"sleeping_bag":
+			var cyl = CylinderMesh.new()
+			cyl.top_radius = 0.35
+			cyl.bottom_radius = 0.35
+			cyl.height = 1.8
+			mesh = cyl
+		"workbench":
+			var box = BoxMesh.new()
+			box.size = Vector3(1.5, 0.9, 0.8)
+			mesh = box
+		"crop_plot":
+			var box = BoxMesh.new()
+			box.size = Vector3(1.2, 0.2, 1.2)
+			mesh = box
+		"spike_trap":
+			var box = BoxMesh.new()
+			box.size = Vector3(1.4, 0.4, 1.4)
+			mesh = box
+		"tool_cupboard":
+			var box = BoxMesh.new()
+			box.size = Vector3(0.8, 1.2, 0.4)
+			mesh = box
 		_:
 			var box = BoxMesh.new()
 			box.size = Vector3(2, 2, 2)
@@ -229,6 +251,26 @@ func _create_placed_building(building_id: String) -> StaticBody3D:
 			var sbox = StaticBody3D.new()
 			sbox.set_script(preload("res://scenes/buildings/storage_box.gd"))
 			return sbox
+		"sleeping_bag":
+			var bag = StaticBody3D.new()
+			bag.set_script(preload("res://scenes/buildings/sleeping_bag.gd"))
+			return bag
+		"workbench":
+			var wb = StaticBody3D.new()
+			wb.set_script(preload("res://scenes/buildings/workbench.gd"))
+			return wb
+		"crop_plot":
+			var cp = StaticBody3D.new()
+			cp.set_script(preload("res://scenes/buildings/crop_plot.gd"))
+			return cp
+		"spike_trap":
+			var st = StaticBody3D.new()
+			st.set_script(preload("res://scenes/buildings/spike_trap.gd"))
+			return st
+		"tool_cupboard":
+			var tc = StaticBody3D.new()
+			tc.set_script(preload("res://scenes/buildings/tool_cupboard.gd"))
+			return tc
 		"half_wall":
 			var box = BoxMesh.new()
 			box.size = Vector3(4, 1.5, 0.2)

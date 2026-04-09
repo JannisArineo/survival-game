@@ -200,6 +200,20 @@ func _register_items():
 		10, 0, 1, 0, 0, 0, 0, "")
 	_make_item("stairs", "Treppe", Color(0.48, 0.38, 0.22), ItemData.ItemType.BUILDING,
 		5, 0, 1, 0, 0, 0, 0, "")
+	_make_item("sleeping_bag", "Schlafsack", Color(0.15, 0.35, 0.6), ItemData.ItemType.BUILDING,
+		3, 0, 1, 0, 0, 0, 0, "res://scenes/buildings/sleeping_bag.tscn")
+	_make_item("workbench", "Werkbank", Color(0.5, 0.35, 0.18), ItemData.ItemType.BUILDING,
+		2, 0, 1, 0, 0, 0, 0, "")
+	_make_item("crop_plot", "Anbau-Beet", Color(0.3, 0.2, 0.1), ItemData.ItemType.BUILDING,
+		5, 0, 1, 0, 0, 0, 0, "")
+	_make_item("spike_trap", "Spitzenfalle", Color(0.55, 0.5, 0.45), ItemData.ItemType.BUILDING,
+		5, 0, 1, 0, 0, 0, 0, "")
+	_make_item("tool_cupboard", "Werkzeugschrank", Color(0.35, 0.25, 0.12), ItemData.ItemType.BUILDING,
+		1, 0, 1, 0, 0, 0, 0, "")
+	# Samen
+	_make_item("berry_seed", "Beeren-Samen", Color(0.7, 0.1, 0.2), ItemData.ItemType.MATERIAL, 20)
+	_make_item("mushroom_seed", "Pilz-Samen", Color(0.5, 0.75, 0.2), ItemData.ItemType.MATERIAL, 20)
+	_make_item("hemp_seed", "Hanf-Samen", Color(0.55, 0.7, 0.25), ItemData.ItemType.MATERIAL, 20)
 
 func arrow_item_setup():
 	if items.has("arrow"):
@@ -249,3 +263,11 @@ func _register_recipes():
 	_make_recipe("craft_campfire", "Lagerfeuer", {"wood": 10, "stone": 5}, "campfire", 1, "building")
 	_make_recipe("craft_furnace", "Schmelzofen", {"stone": 200, "wood": 50}, "furnace", 1, "building")
 	_make_recipe("craft_storage_box", "Lagerkiste", {"wood": 150, "rope": 5}, "storage_box", 1, "building")
+	_make_recipe("craft_sleeping_bag", "Schlafsack", {"cloth": 20, "fiber": 10}, "sleeping_bag", 1, "building")
+	_make_recipe("craft_workbench", "Werkbank", {"wood": 300, "stone": 50}, "workbench", 1, "building")
+	_make_recipe("craft_crop_plot", "Anbau-Beet", {"wood": 80, "stone": 20}, "crop_plot", 1, "building")
+	_make_recipe("craft_spike_trap", "Spitzenfalle", {"wood": 100, "stone": 30}, "spike_trap", 1, "building")
+	_make_recipe("craft_tool_cupboard", "Werkzeugschrank", {"wood": 200, "metal_fragment": 20}, "tool_cupboard", 1, "building")
+	_make_recipe("craft_berry_seed", "Beeren-Samen", {"berries": 3}, "berry_seed", 1, "survival")
+	_make_recipe("craft_mushroom_seed", "Pilz-Samen", {"mushroom": 2}, "mushroom_seed", 1, "survival")
+	_make_recipe("craft_hemp_seed", "Hanf-Samen", {"fiber": 5}, "hemp_seed", 1, "survival")

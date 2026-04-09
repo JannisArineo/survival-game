@@ -12,6 +12,19 @@ var is_night: bool = false
 var paused: bool = false
 
 var player: CharacterBody3D = null
+var respawn_position: Vector3 = Vector3.ZERO
+var near_workbench: bool = false
+var workbench_timer: float = 0.0
+var tool_cupboards: Array = []
+
+func register_tool_cupboard(tc: Node3D):
+	tool_cupboards.append(tc)
+
+func is_position_protected(pos: Vector3) -> bool:
+	for tc in tool_cupboards:
+		if is_instance_valid(tc) and tc.is_position_protected(pos):
+			return true
+	return false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -20,6 +33,10 @@ func _process(delta):
 	if paused:
 		return
 	current_time += delta / day_length
+	if workbench_timer > 0:
+		workbench_timer -= delta
+		if workbench_timer <= 0:
+			near_workbench = false
 	if current_time >= 1.0:
 		current_time -= 1.0
 		current_day += 1
