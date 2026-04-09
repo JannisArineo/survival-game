@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://found001"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_found"]
+size = Vector3(4, 0.3, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_found"]
+albedo_color = Color(0.4, 0.3, 0.2)
+roughness = 0.9
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_found"]
+size = Vector3(4, 0.3, 4)
+
+[node name="Foundation" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_found")
+surface_material_override/0 = SubResource("StandardMaterial3D_found")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_found")

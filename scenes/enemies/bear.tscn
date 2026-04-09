@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bear001"]
+
+[ext_resource type="Script" path="res://scenes/enemies/enemy_base.gd" id="1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bear"]
+radius = 0.6
+height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_bear_body"]
+size = Vector3(1.0, 1.0, 1.6)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eye"]
+radius = 0.08
+height = 0.16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eye"]
+albedo_color = Color(1, 0.8, 0.1)
+emission_enabled = true
+emission = Color(1, 0.6, 0.0)
+emission_energy_multiplier = 1.0
+
+[node name="Bear" type="CharacterBody3D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1")
+max_health = 150.0
+move_speed = 3.0
+attack_damage = 25.0
+attack_range = 3.0
+chase_range = 15.0
+aggro_range = 8.0
+attack_cooldown = 2.0
+drop_items = {"raw_meat": {"min": 3, "max": 6}, "animal_hide": {"min": 2, "max": 4}}
+body_color = Color(0.3, 0.2, 0.12)
+is_passive = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_bear")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("BoxMesh_bear_body")
+
+[node name="EyeLeft" type="MeshInstance3D" parent="BodyMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, -0.75)
+mesh = SubResource("SphereMesh_eye")
+surface_material_override/0 = SubResource("StandardMaterial3D_eye")
+
+[node name="EyeRight" type="MeshInstance3D" parent="BodyMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.3, -0.75)
+mesh = SubResource("SphereMesh_eye")
+surface_material_override/0 = SubResource("StandardMaterial3D_eye")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+target_desired_distance = 2.0
