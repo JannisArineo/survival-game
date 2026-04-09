@@ -118,8 +118,11 @@ func _spawn_resources():
 	var tree_scene = preload("res://scenes/resources/tree.tscn")
 	var rock_scene = preload("res://scenes/resources/rock.tscn")
 	var ore_scene = preload("res://scenes/resources/ore.tscn")
+	var berry_script = preload("res://scenes/resources/berry_bush.gd")
+	var mushroom_script = preload("res://scenes/resources/mushroom.gd")
+	var loot_script = preload("res://scenes/world/loot_crate.gd")
 
-	for i in 12:
+	for i in 16:
 		var rx = rng.randf_range(1, CHUNK_SIZE - 1)
 		var rz = rng.randf_range(1, CHUNK_SIZE - 1)
 		var world_x = chunk_x * CHUNK_SIZE + rx
@@ -132,12 +135,24 @@ func _spawn_resources():
 
 		var instance: Node3D
 		var roll = rng.randf()
-		if roll < 0.55:
+		if roll < 0.45:
 			instance = tree_scene.instantiate()
-		elif roll < 0.85:
+		elif roll < 0.65:
 			instance = rock_scene.instantiate()
-		else:
+		elif roll < 0.75:
 			instance = ore_scene.instantiate()
+		elif roll < 0.85:
+			# Beeren-Busch
+			instance = StaticBody3D.new()
+			instance.set_script(berry_script)
+		elif roll < 0.93:
+			# Pilz
+			instance = StaticBody3D.new()
+			instance.set_script(mushroom_script)
+		else:
+			# Loot Crate (selten)
+			instance = StaticBody3D.new()
+			instance.set_script(loot_script)
 
 		instance.position = Vector3(rx * QUAD_SIZE, height, rz * QUAD_SIZE)
 		resource_spawner.add_child(instance)

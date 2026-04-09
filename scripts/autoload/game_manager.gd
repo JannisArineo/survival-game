@@ -3,6 +3,7 @@ extends Node
 signal time_changed(hour: float)
 signal day_changed(day: int)
 signal player_died
+signal show_notification(text: String, color: Color)
 
 var day_length: float = 600.0 # 10 Minuten = 1 Tag
 var current_time: float = 0.3 # Start um ~7:00 morgens (0.0 = Mitternacht, 0.5 = Mittag)

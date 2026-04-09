@@ -71,6 +71,26 @@ func _create_fallback_ghost(building_id: String) -> Node3D:
 			cylinder.bottom_radius = 0.5
 			cylinder.height = 0.3
 			mesh = cylinder
+		"furnace":
+			var box = BoxMesh.new()
+			box.size = Vector3(1.2, 1.0, 1.2)
+			mesh = box
+		"storage_box":
+			var box = BoxMesh.new()
+			box.size = Vector3(1.0, 0.7, 0.7)
+			mesh = box
+		"half_wall":
+			var box = BoxMesh.new()
+			box.size = Vector3(4, 1.5, 0.2)
+			mesh = box
+		"floor_tile":
+			var box = BoxMesh.new()
+			box.size = Vector3(4, 0.15, 4)
+			mesh = box
+		"stairs":
+			var box = BoxMesh.new()
+			box.size = Vector3(4, 1.5, 2)
+			mesh = box
 		_:
 			var box = BoxMesh.new()
 			box.size = Vector3(2, 2, 2)
@@ -200,8 +220,38 @@ func _create_placed_building(building_id: String) -> StaticBody3D:
 			cyl_shape.radius = 0.5
 			cyl_shape.height = 0.3
 			shape = cyl_shape
-			# Campfire Script
 			body.set_script(preload("res://scenes/buildings/campfire.gd"))
+		"furnace":
+			var furnace = StaticBody3D.new()
+			furnace.set_script(preload("res://scenes/buildings/furnace.gd"))
+			return furnace
+		"storage_box":
+			var sbox = StaticBody3D.new()
+			sbox.set_script(preload("res://scenes/buildings/storage_box.gd"))
+			return sbox
+		"half_wall":
+			var box = BoxMesh.new()
+			box.size = Vector3(4, 1.5, 0.2)
+			mesh = box
+			var box_shape = BoxShape3D.new()
+			box_shape.size = Vector3(4, 1.5, 0.2)
+			shape = box_shape
+			body.position.y = 0.75
+		"floor_tile":
+			var box = BoxMesh.new()
+			box.size = Vector3(4, 0.15, 4)
+			mesh = box
+			var box_shape = BoxShape3D.new()
+			box_shape.size = Vector3(4, 0.15, 4)
+			shape = box_shape
+		"stairs":
+			var box = BoxMesh.new()
+			box.size = Vector3(4, 1.5, 2)
+			mesh = box
+			var box_shape = BoxShape3D.new()
+			box_shape.size = Vector3(4, 1.5, 2)
+			shape = box_shape
+			body.position.y = 0.75
 		_:
 			var box = BoxMesh.new()
 			box.size = Vector3(2, 2, 2)

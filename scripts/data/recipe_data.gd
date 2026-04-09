@@ -6,3 +6,4 @@ extends Resource
 @export var ingredients: Dictionary = {} # item_id -> count
 @export var result_id: String = ""
 @export var result_count: int = 1
+@export var category: String = ""  # survival, food, combat, armor, building
